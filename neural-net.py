@@ -35,6 +35,17 @@ def calculate_loss(model):
 
     return 1./num_examples * data_loss
 
+def predict(model, x):
+    W1, b1, W2, b2 = model['W1'], model['b1'], model['W2'], model['b2']
+
+    # Forward propogation
+    z1      = x.dot(W1) + b1
+    a1      = np.tanh(z1)
+    z2      = a1.dot(W2) + b2
+    output  = softmax(z2)
+
+    return np.argmax(probs, axis=1)
+
 
 def softmax(vector):
     exponent_vector = np.exp(vector)
