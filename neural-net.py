@@ -93,3 +93,7 @@ def build_model(nn_hdim, num_passes=20000, print_loss=False):
 def softmax(vector):
     exponent_vector = np.exp(vector)
     probabilities   = exponent_vector / np.sum(exponent_vector, axis=1, keepdims=True)
+
+    return probabilities
+
+model = build_model(3, print_loss=True)
