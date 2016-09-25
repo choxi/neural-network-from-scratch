@@ -44,13 +44,12 @@ def predict(model, x):
 
 def build_model(nn_hdim, num_passes=20000, print_loss=False):
     # Initialize weights and biases to random values
-    # TODO: why do we divide the weights by the square root of the input size?
     np.random.seed(0)
 
     model = {
-      'W1': np.random.randn(nn_input_dim, nn_hdim) / np.sqrt(nn_input_dim),
+      'W1': np.random.randn(nn_input_dim, nn_hdim),
       'b1': np.zeros((1, nn_hdim)),
-      'W2': np.random.randn(nn_hdim, nn_output_dim) / np.sqrt(nn_hdim),
+      'W2': np.random.randn(nn_hdim, nn_output_dim),
       'b2': np.zeros((1, nn_output_dim))
     }
 
