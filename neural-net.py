@@ -111,4 +111,9 @@ def plot_decision_boundary(pred_func):
     plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral)
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Spectral)
 
+# Run the model
 model = build_model(3, print_loss=True)
+# Plot the decision boundary
+plot_decision_boundary(lambda x: predict(model, x))
+plt.title("Decision Boundary for hidden layer size 3")
+plt.show()
