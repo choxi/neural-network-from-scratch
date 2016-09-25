@@ -26,7 +26,15 @@ def calculate_loss(model):
     output = softmax(z2)
 
     # Calculate loss
+    # TODO: what is "probs"?
     correct_logprobs = -np.log(probs[range(num_examples)])
+    data_loss        = np.sum(correct_logprobs)
+
+    # Add regularization term to loss (optional)
+    data_loss += reg_lambda/2 * (np.sum(np.square(W1)) + np.sum(np.square(W2)))
+
+    return 1./num_examples * data_loss
+
 
 def softmax(vector):
     exponent_vector = np.exp(vector)
