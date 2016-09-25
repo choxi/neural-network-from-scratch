@@ -82,7 +82,7 @@ def build_model(nn_hdim, num_passes=20000, print_loss=False):
         W2 += -epsilon * dW2
         b2 += -epsilon * db2
 
-        model = { 'W1': W1, 'b1': b1, 'W2', W2, 'b2': b2 }
+        model = { 'W1': W1, 'b1': b1, 'W2': W2, 'b2': b2 }
 
         # Print the loss. Expensive because it uses the whole dataset, so we only print it once every 1000 iterations.
         if print_loss and i % 1000 == 0:
