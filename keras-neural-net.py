@@ -9,7 +9,6 @@ import  matplotlib.pyplot as plt
 
 import  sklearn
 from    sklearn import datasets
-from    sklearn.metrics import accuracy_score
 
 # Generate Data
 # np.random.seed(0)
