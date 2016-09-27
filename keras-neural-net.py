@@ -2,24 +2,27 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation
 from keras.utils.visualize_util import plot
 from keras.utils.np_utils import to_categorical
+from keras.optimizers import SGD
 
 import  numpy as np
 import  matplotlib.pyplot as plt
 
 import  sklearn
-from    sklearn import datasets, linear_model
+from    sklearn import datasets
+from    sklearn.metrics import accuracy_score
+
+# Generate Data
+# np.random.seed(0)
+X, y = sklearn.datasets.make_moons(200, noise=0.20)
 
 # Build model
 model = Sequential()
-model.add(Dense(input_dim=2, output_dim=3, activation="tanh"))
-model.add(Dense(output_dim=2, activation="softmax"))
-model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
+model.add(Dense(5, input_dim=2, activation="tanh"))
+model.add(Dense(2, activation="softmax"))
+model.compile(loss='binary_crossentropy', optimizer="sgd", metrics=['accuracy'])
 
 # Train
-np.random.seed(0)
-X, y = sklearn.datasets.make_moons(200, noise=0.20)
-y_binary = to_categorical(y)
-model.fit(X, y_binary)
+model.fit(X, to_categorical(y), nb_epoch=2000)
 
 # Helper function to plot a decision boundary.
 # If you don't fully understand this function don't worry, it just generates the contour plot below.
@@ -38,6 +41,6 @@ def plot_decision_boundary(pred_func):
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Spectral)
 
 # Predict and plot
-plot_decision_boundary(lambda x: model.predict_classes(x, batch_size=32))
+plot_decision_boundary(lambda x: model.predict_classes(x))
 plt.title("Decision Boundary for hidden layer size 3")
 plt.show()
